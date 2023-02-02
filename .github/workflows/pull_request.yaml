@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew assembleDebug assembleDebugAndroidTest --stacktrace
 
       - name: Login to Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v1
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0
         with:
           service_account_key: ${{ secrets.GCLOUD_AUTH }}
 
