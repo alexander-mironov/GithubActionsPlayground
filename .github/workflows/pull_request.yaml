@@ -33,10 +33,13 @@ jobs:
       - name: Assemble debug APKs
         run: ./gradlew assembleDebug assembleDebugAndroidTest --stacktrace
 
-      - name: Login to Google Cloud
-        uses: google-github-actions/setup-gcloud@v0
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          service_account_key: ${{ secrets.GCLOUD_AUTH }}
+          credentials_json: '${{ secrets.GCLOUD_AUTH }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
